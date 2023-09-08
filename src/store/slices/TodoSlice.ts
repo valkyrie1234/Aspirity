@@ -38,31 +38,52 @@ const todoSlice = createSlice({
     name: 'todos',
     initialState,
     reducers: {
-        addTodo:(state, action) => {
+        addTodo: (state, action) => {
             const newTodo = {
                 id: Date.now(),
                 task: action.payload.task,
                 completed: false
             };
-            if( newTodo.task ){
+            if (newTodo.task) {
                 state.list.push(newTodo)
-            } else{
+            } else {
                 return alert('write smth')
             }
-            
+
         },
 
-        toggledComplete:(state, action: PayloadAction<number>) => {
+        toggledComplete: (state, action: PayloadAction<number>) => {
             const toggledTodo = state.list.find(todo => todo.id === action.payload)
-            if(toggledTodo){
+            if (toggledTodo) {
                 toggledTodo.completed = !toggledTodo?.completed;
             }
-            
-        }
+
+        },
+
+        deleteTodo: (state, action: PayloadAction<number>) => {
+            if (confirm('do you wanna really do this?') === true) {
+                state.list = state.list.filter(todo => todo.id !== action.payload)
+            }
+        },
+
+        filterTodoCompleted: (state, action) => {
+            state.list = state.list.filter(todo => todo.completed == true)
+        },
+
+        // filterAllTodo: (state, action) => {
+           
+        // }
     }
 })
 
 
 
-export const { addTodo, toggledComplete } = todoSlice.actions
+export const {
+    addTodo,
+    toggledComplete,
+    deleteTodo,
+    filterTodoCompleted,
+    // filterAllTodo
+}
+    = todoSlice.actions
 export default todoSlice.reducer
