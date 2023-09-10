@@ -1,16 +1,19 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createNextState, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { produce } from 'immer';
 
-type Todo = {
+export type Todo = {
     id: number;
     task: string;
     completed: boolean;
 }
 
 type TodoState = {
+    showOnlyCompleted: boolean;
     list: Todo[];
 }
 
 const initialState: TodoState = {
+    showOnlyCompleted: false,
     list: [
         {
             id: 1,
@@ -52,7 +55,7 @@ const todoSlice = createSlice({
 
         },
 
-        toggledComplete: (state, action: PayloadAction<number>) => {
+        toggleCompleteTodoItem: (state, action: PayloadAction<number>) => {
             const toggledTodo = state.list.find(todo => todo.id === action.payload)
             if (toggledTodo) {
                 toggledTodo.completed = !toggledTodo?.completed;
@@ -61,14 +64,14 @@ const todoSlice = createSlice({
         },
 
         deleteTodo: (state, action: PayloadAction<number>) => {
-            if (confirm('do you wanna really do this?') === true) {
-                state.list = state.list.filter(todo => todo.id !== action.payload)
-            }
+                if (confirm('do you wanna really do this?') === true) {
+                    state.list = state.list.filter(todo => todo.id !== action.payload)
+                }
         },
 
-        filterTodoCompleted: (state, action) => {
-            state.list = state.list.filter(todo => todo.completed == true)
-        },
+        changeShowOnlyCompleted: (state, action: PayloadAction<boolean> ) =>{
+            state.showOnlyCompleted = action.payload;
+        }
 
         // filterAllTodo: (state, action) => {
            
@@ -80,9 +83,9 @@ const todoSlice = createSlice({
 
 export const {
     addTodo,
-    toggledComplete,
+    toggleCompleteTodoItem,
     deleteTodo,
-    filterTodoCompleted,
+    changeShowOnlyCompleted
     // filterAllTodo
 }
     = todoSlice.actions

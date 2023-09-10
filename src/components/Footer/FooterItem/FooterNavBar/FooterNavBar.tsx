@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import {  filterTodoCompleted } from '../../../../store/slices/TodoSlice'
+import {  changeShowOnlyCompleted } from '../../../../store/slices/TodoSlice'
 import { useAppDispatch } from "../../../../store/hooks/useAppDispatch";
-import { useAppSelector } from '../../../../store/hooks/useAppSelector'
 
 
 
@@ -9,9 +8,8 @@ import { useAppSelector } from '../../../../store/hooks/useAppSelector'
 
 export const FooterNavBar: React.FC = () => {
 
-    const completedTodos = useAppSelector((state) =>
-        state.todoReducer.list)
-
+    
+    
 
 
     const dispatch = useAppDispatch();
@@ -27,20 +25,22 @@ export const FooterNavBar: React.FC = () => {
         }
         >
             <Typography variant='subtitle2'
-                // onClick={() => dispatch(filterAllTodo(allTodos))}
+                onClick={() => dispatch(changeShowOnlyCompleted(false))}
                 sx={
                     {
-                        fontSize: '10px'
+                        fontSize: '10px',
+                        cursor:'pointer'
                     }
                 }
             >
                 All
             </Typography>
             <Typography variant='subtitle2'
-                onClick={() => dispatch(filterTodoCompleted(completedTodos))}
+                onClick={() => dispatch(changeShowOnlyCompleted(true))}
                 sx={
                     {
-                        fontSize: '10px'
+                        fontSize: '10px',
+                        cursor:'pointer'
                     }
                 }
             >

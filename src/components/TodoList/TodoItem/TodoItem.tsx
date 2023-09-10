@@ -8,7 +8,7 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 
 import { useAppDispatch } from '../../../store/hooks/useAppDispatch';
-import { toggledComplete, deleteTodo } from "../../../store/slices/TodoSlice";
+import {  deleteTodo, toggleCompleteTodoItem } from "../../../store/slices/TodoSlice";
 
 
 interface ITodoItem {
@@ -47,7 +47,7 @@ export const TodoItem: React.FC<ITodoItem> = ({ task, id, completed }) => {
             }
             >
                 <Checkbox
-                    onChange={() => dispatch(toggledComplete(id))}
+                    onChange={() => dispatch(toggleCompleteTodoItem(id))}
                     sx={{ color: 'lightgray', '& .MuiSvgIcon-root': { fontSize: 12 } }}
                     icon={<CircleUnchecked />}
                     checkedIcon={
