@@ -1,5 +1,5 @@
-import { createNextState, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { produce } from 'immer';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 
 export type Todo = {
     id: number;
@@ -64,18 +64,38 @@ const todoSlice = createSlice({
         },
 
         deleteTodo: (state, action: PayloadAction<number>) => {
-                if (confirm('do you wanna really do this?') === true) {
-                    state.list = state.list.filter(todo => todo.id !== action.payload)
-                }
+            if (confirm('do you wanna really do this?') === true) {
+                state.list = state.list.filter(todo => todo.id !== action.payload)
+            }
         },
 
-        changeShowOnlyCompleted: (state, action: PayloadAction<boolean> ) =>{
+        changeShowOnlyCompleted: (state, action: PayloadAction<boolean>) => {
             state.showOnlyCompleted = action.payload;
-        }
+        },
 
-        // filterAllTodo: (state, action) => {
-           
-        // }
+        deleteAllCompletedTodos: (state, action) => {
+            state.list = state.list.filter(todo => todo.completed == !action.payload)
+        },
+
+        changeTodoContent: (state, action: PayloadAction<number>) => {
+
+
+            const a = state.list.find(todo => {
+                let setTask = null;
+                if (todo.id === action.payload) {
+                    setTask = prompt('set Task')
+                    if (setTask != null) {
+                        todo.task = setTask;
+                    }
+                }
+            })
+
+            console.log(a)
+
+            // 1. изменить контент выбранного туду 
+            // 1.1 найти в массиве наш туду 
+            // 1.2 изменить его контент
+        }
     }
 })
 
@@ -85,7 +105,9 @@ export const {
     addTodo,
     toggleCompleteTodoItem,
     deleteTodo,
-    changeShowOnlyCompleted
+    changeShowOnlyCompleted,
+    deleteAllCompletedTodos,
+    changeTodoContent
     // filterAllTodo
 }
     = todoSlice.actions

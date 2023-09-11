@@ -8,7 +8,7 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 
 import { useAppDispatch } from '../../../store/hooks/useAppDispatch';
-import {  deleteTodo, toggleCompleteTodoItem } from "../../../store/slices/TodoSlice";
+import { changeTodoContent, deleteTodo, toggleCompleteTodoItem } from "../../../store/slices/TodoSlice";
 
 
 interface ITodoItem {
@@ -87,6 +87,7 @@ export const TodoItem: React.FC<ITodoItem> = ({ task, id, completed }) => {
                 }
             >
                 <ModeEditIcon
+                    onClick = { () => dispatch(changeTodoContent(id)) }
                     sx={
                         {
                             fontSize: '14px'
@@ -94,7 +95,7 @@ export const TodoItem: React.FC<ITodoItem> = ({ task, id, completed }) => {
                     }
                 />
                 <DeleteIcon
-                    onClick={() => dispatch(deleteTodo(id))}
+                    onClick={ () => dispatch(deleteTodo(id)) }
                     sx={
                         {
                             textJustify: 'end',

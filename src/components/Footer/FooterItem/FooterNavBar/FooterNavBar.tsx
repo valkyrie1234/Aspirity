@@ -1,15 +1,18 @@
 import { Box, Typography } from "@mui/material";
-import {  changeShowOnlyCompleted } from '../../../../store/slices/TodoSlice'
+import {  changeShowOnlyCompleted, deleteAllCompletedTodos } from '../../../../store/slices/TodoSlice'
 import { useAppDispatch } from "../../../../store/hooks/useAppDispatch";
 
 
+// 1. показать кол-во завершенных задач 
+// 1.1 получить только завершенные задачи
+// 1.2 посчитать завершенные задачи 
 
 
 
 export const FooterNavBar: React.FC = () => {
 
     
-    
+
 
 
     const dispatch = useAppDispatch();
@@ -47,9 +50,11 @@ export const FooterNavBar: React.FC = () => {
                 Completed
             </Typography>
             <Typography variant='subtitle2'
+                onClick = { () => dispatch(deleteAllCompletedTodos(true))}
                 sx={
                     {
-                        fontSize: '10px'
+                        fontSize: '10px',
+                        cursor: 'pointer'
                     }
                 }
             >
