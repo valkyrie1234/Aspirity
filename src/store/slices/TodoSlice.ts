@@ -78,9 +78,7 @@ const todoSlice = createSlice({
         },
 
         changeTodoContent: (state, action: PayloadAction<number>) => {
-
-
-            const a = state.list.find(todo => {
+            state.list.find(todo => {
                 let setTask = null;
                 if (todo.id === action.payload) {
                     setTask = prompt('set Task')
@@ -89,12 +87,6 @@ const todoSlice = createSlice({
                     }
                 }
             })
-
-            console.log(a)
-
-            // 1. изменить контент выбранного туду 
-            // 1.1 найти в массиве наш туду 
-            // 1.2 изменить его контент
         }
     }
 })
@@ -108,7 +100,6 @@ export const {
     changeShowOnlyCompleted,
     deleteAllCompletedTodos,
     changeTodoContent
-    // filterAllTodo
 }
     = todoSlice.actions
 export default todoSlice.reducer

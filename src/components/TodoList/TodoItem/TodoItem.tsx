@@ -90,7 +90,8 @@ export const TodoItem: React.FC<ITodoItem> = ({ task, id, completed }) => {
                     onClick = { () => dispatch(changeTodoContent(id)) }
                     sx={
                         {
-                            fontSize: '14px'
+                            fontSize: '14px',
+                            cursor:'pointer'
                         }
                     }
                 />
@@ -100,7 +101,8 @@ export const TodoItem: React.FC<ITodoItem> = ({ task, id, completed }) => {
                         {
                             textJustify: 'end',
                             fontSize: '14px',
-                            marginRight: '10px'
+                            marginRight: '10px',
+                            cursor:'pointer'
                         }
                     }
                 />

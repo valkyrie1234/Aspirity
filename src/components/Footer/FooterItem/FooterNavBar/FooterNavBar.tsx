@@ -54,7 +54,8 @@ export const FooterNavBar: React.FC = () => {
                 sx={
                     {
                         fontSize: '10px',
-                        cursor: 'pointer'
+                        cursor: 'pointer',
+                        color:'red'
                     }
                 }
             >
