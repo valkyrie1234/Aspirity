@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 
 export type Todo = {
-    id: number;
+    id: number; 
     task: string;
     completed: boolean;
 }

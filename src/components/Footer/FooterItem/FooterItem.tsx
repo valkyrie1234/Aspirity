@@ -16,7 +16,7 @@ export const FooterItem: React.FC = () => {
                 height: "100%",
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'space-around'
+                justifyContent: 'space-around' 
             }
         }
         >

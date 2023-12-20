@@ -14,7 +14,7 @@ export const Panel = () => {
     const add = () => {
         console.log('value:', value);
 
-        dispatch(addTodo({
+        dispatch(addTodo({ 
             task: value
         }))
 

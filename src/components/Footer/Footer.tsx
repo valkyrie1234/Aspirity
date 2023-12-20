@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
                     borderRadius: '0px'
                 }
             }
-            elevation={2}
+            elevation={2} 
         >
             <FooterItem />
         </Paper>

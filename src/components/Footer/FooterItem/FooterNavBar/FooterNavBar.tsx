@@ -22,7 +22,7 @@ export const FooterNavBar: React.FC = () => {
             {
                 width: '40%',
                 display: 'flex',
-                justifyContent: 'space-around',
+                justifyContent: 'space-around', 
                 alignItems: 'center'
             }
         }

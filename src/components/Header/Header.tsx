@@ -6,7 +6,7 @@ export const Header:React.FC = () => {
         <>
             <Typography variant="h1" component='h1' sx={{fontSize:60}} gutterBottom>
                 Todo
-            </Typography>
+            </Typography> 
         </>
     )
 }
